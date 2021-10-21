@@ -142,7 +142,6 @@ class UserController extends Controller
 
   public function profile($slug, $media = null)
   {
-
     $media = request('media');
     $mediaTitle = null;
     $sortPostByTypeMedia = null;
@@ -261,7 +260,8 @@ class UserController extends Controller
 
   }//<--- End Method
 
-  public function postDetail($slug, $id)
+
+    public function postDetail($slug, $id)
   {
 
       $user    = User::where( 'username','=', $slug )->where('status','active')->firstOrFail();
