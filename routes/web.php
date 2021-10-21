@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\GroupController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -306,11 +307,16 @@ Route::group(['middleware' => 'private.content'], function() {
 	Route::get('category/{slug}/{type?}','HomeController@category')->name('seo');
 
 	// Profile User
-	Route::get('{slug}', 'UserController@profile')->where('slug','[A-Za-z0-9\_-]+')->name('profile');
-	Route::get('{slug}/{media}', 'UserController@profile')->where('media', '(photos|videos|audio|files)$')->name('profile');
+    Route::get('{slug}', 'UserController@profile')->where('slug','[A-Za-z0-9\_-]+')->name('profile');
+    Route::get('group/profile/{id}', [GroupController::class,'groupProfile'])->name('group.profile');
+    Route::get('edit/group/{id}',[GroupController::class,'edit'])->name('edit.group');
+    Route::put('/update/{id}',[GroupController::class,'update'])->name('group.update');
+    Route::get('delete/group/{id}',[GroupController::class,'destroy'])->name('delete.group');
 
-	// Profile User
-	Route::get('{slug}/post/{id}', 'UserController@postDetail')->where('slug','[A-Za-z0-9\_-]+')->name('profile');
+    Route::get('{slug}/{media}', 'UserController@profile')->where('media', '(photos|videos|audio|files)$')->name('profile');
+
+    // Profile User
+    Route::get('{slug}/post/{id}', 'UserController@postDetail')->where('slug','[A-Za-z0-9\_-]+')->name('profile');
 
 });//<------ Private content
 
@@ -444,6 +450,8 @@ Route::group(['middleware' => 'private.content'], function() {
     //Create Group Routes
      Route::get('group/create',"GroupController@create")->name('group.create');
      Route::post('group/store',"GroupController@store")->name('group.store');
+     Route::get('all/groups',"GroupController@index")->name('group.user');
+
 
 	// Maintenance mode
 	Route::view('panel/admin/maintenance/mode','admin.maintenance_mode');
