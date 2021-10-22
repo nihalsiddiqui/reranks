@@ -18,6 +18,6 @@ class Group extends Model
         return $this->belongsTo(User::class,'admin_id');
     }
     public function updates(){
-        return $this->belongsToMany(Updates::class,'group_updates');
+        return $this->hasMany(Updates::class);
     }
 }
