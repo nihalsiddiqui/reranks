@@ -49,7 +49,7 @@
 {{--  </button>--}}
 {{--@endif--}}
 
-    <img src="{{asset($group->cover_image)}}" width="1349px" height="400px">
+    <img src="{{asset($group->cover_image)}}" width="100%" height="400px">
 {{--<img src="{{asset('images/cover/images.jpg')}}" >--}}
 </div>
 
