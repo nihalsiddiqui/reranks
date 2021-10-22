@@ -30,8 +30,7 @@ class Updates extends Model
     {
         return $this->belongsToMany('App\Model\User', 'bookmarks', 'updates_id', 'user_id');
     }
-
-    public function groups(){
-        $this->belongsToMany(Group::class,'group_updates');
+    public function group(){
+        $this->belongsTo(Group::class,'group_id');
     }
 }
