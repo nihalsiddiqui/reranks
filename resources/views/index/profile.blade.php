@@ -114,7 +114,7 @@
 {{--                  {{ auth()->user()->verified_id == 'yes' ? trans('general.edit_my_page') : trans('users.edit_profile')}}--}}
               Edit My Group
               </a>
-                    <a href="{{route('delete.group',$group->id)}}" class="btn delete btn-primary btn-profile mr-1" onclick="alert('Are you sure ? you want delete this group?')">
+                    <a  data-toggle="modal" data-target="#exampleModalLong" class="btn delete btn-primary btn-profile mr-1" >
                         <i class="fas fa-trash mr-2"></i>
                         {{--                  {{ auth()->user()->verified_id == 'yes' ? trans('general.edit_my_page') : trans('users.edit_profile')}}--}}
                         Delete Group
@@ -291,6 +291,21 @@
 
           </div><!-- d-flex-user -->
 
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-body text-left" >Are You Sure ? You want to delete this group?</div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                              <a href="{{route('delete.group',$group->id)}}" class="btn btn-primary btn-profile">Delete Group</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+{{--              end modal--}}
             @if (auth()->check() && auth()->user()->id != $user->id)
             <div class="text-center">
               <button type="button" class="btn e-none btn-link text-danger p-0" data-toggle="modal" data-target="#reportCreator">
