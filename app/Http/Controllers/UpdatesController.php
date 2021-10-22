@@ -270,6 +270,7 @@ class UpdatesController extends Controller
       $sql->file_name     = $originalNameZip ?? '';
       $sql->video_embed   = $videoUrl ? $urlVideo : '';
       $sql->price         = $this->request->price;
+      $sql->group_id         = $this->request->group_id ?? null;
       $sql->save();
 
       if ($sql->image != '') {

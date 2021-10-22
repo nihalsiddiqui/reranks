@@ -25,7 +25,7 @@
 
         @if (auth()->user()->verified_id == 'yes')
             @if(auth()->user()->role == 'admin' || auth()->user()->role == 'normal')
-                @include('includes.form-post')
+                    @include('includes.form-post')
             @endif
         @endif
 

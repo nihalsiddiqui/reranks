@@ -84,7 +84,14 @@ class GroupController extends Controller
 
     public function groupProfile($id)
     {
-        $slug = auth()->user()->username;
+//        dd($id);
+        //        group
+        $group = Group::where('id',$id)->with("members","owner")->first();
+//        dd($group);
+        $slug = $group->owner->username;
+        $grp_members = $group->members->pluck("id")->toArray();
+        if (!in_array(auth()->user()->id,$grp_members))
+            abort(404);
 //        dd($slug);
         $media = null;
         $media = request('media');
@@ -137,7 +144,7 @@ class GroupController extends Controller
         $query->when(request('media') == 'files', function($q) {
             $q->where('file', '<>', '');
         });
-
+        $query->where("group_id",$id);
         $updates = $query->orderBy('id','desc')->paginate($this->settings->number_posts_show);
 
         // Check if subscription exists
@@ -178,8 +185,6 @@ class GroupController extends Controller
         // Count all likes
         $likeCount = $user->likesCount();
 
-//        group
-        $group = Group::where('id',$id)->first();
 
 //        dd($group->cover_image);
         // Subscription sActive

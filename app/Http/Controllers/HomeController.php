@@ -89,9 +89,9 @@ class HomeController extends Controller
               ->orWhere('subscriptions.user_id', '=', Auth::user()->id)
               ->where('subscriptions.stripe_id', '=', '')
               ->whereFree('yes')
-
               ->orWhere('updates.user_id', Auth::user()->id)
-        			->groupBy('updates.id')
+              ->whereNull("updates.group_id")
+              ->groupBy('updates.id')
         			->orderBy( 'updates.id', 'desc' )
         			->select('updates.*')
         			->paginate($this->settings->number_posts_show);

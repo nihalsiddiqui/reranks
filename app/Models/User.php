@@ -59,7 +59,7 @@ class User extends Authenticatable
     }
     public function myGroups()
     {
-        return $this->hasMany(Group::class);
+        return $this->hasMany(Group::class,"created_by");
     }
     public function myAdmin()
     {
