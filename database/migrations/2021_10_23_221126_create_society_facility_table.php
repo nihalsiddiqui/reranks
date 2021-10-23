@@ -15,6 +15,8 @@ class CreateSocietyFacilityTable extends Migration
     {
         Schema::create('society_facility', function (Blueprint $table) {
             $table->id();
+            $table->string('distance')->nullable();
+            $table->string('count')->nullable();
             $table->unsignedBigInteger("facility_id")->index();
             $table->foreign("facility_id")
                 ->references("id")->on("facilities")->cascadeOnDelete();
