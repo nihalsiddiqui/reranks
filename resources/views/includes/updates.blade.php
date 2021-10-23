@@ -1,3 +1,12 @@
+<style>
+    @media  only screen and (max-width: 400px) {
+        .btn-profile{
+            width: 12%!important;
+            padding: 10px!important;
+        }
+    }
+</style>
+
 @foreach ($updates as $response)
     @auth
         @php
@@ -417,7 +426,9 @@
                         class="font-weight-bold totalComments">{{Helper::formatNumber($response->comments()->count())}}</small>
 			    </span>
                 <span class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                    <a style="margin-right: 6px" class="a2a_dd" href="{{url($response->user()->username.'/post', $response->id)}}"></a>
+                    <a style="margin-right: 6px;padding: 10px" class="a2a_dd btn btn-profile btn-google" title="share" href="{{url($response->user()->username.'/post', $response->id)}}">
+                        <i class="far fa-share-square mr-1 mr-lg-0"></i>
+                    </a>
                 </span>
 
 
