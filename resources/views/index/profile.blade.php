@@ -317,35 +317,35 @@
           </div><!-- media-body -->
         </div><!-- media -->
 
-        @if ($user->verified_id == 'yes')
-        <ul class="nav nav-profile justify-content-center">
+{{--        @if ($user->verified_id == 'yes')--}}
+{{--        <ul class="nav nav-profile justify-content-center">--}}
 
-          <li class="nav-link @if (request()->path() == $user->username)active @endif navbar-user-mobile">
-            <small class="btn-block sm-btn-size">{{$user->updates()->count()}}</small>
-              <a href="{{request()->path() == $user->username ? 'javascript:;' : url($user->username)}}" title="{{trans('general.posts')}}"><i class="feather icon-file-text"></i> <span class="d-lg-inline-block d-none">{{trans('general.posts')}}</span></a>
-            </li>
+{{--          <li class="nav-link @if (request()->path() == $user->username)active @endif navbar-user-mobile">--}}
+{{--            <small class="btn-block sm-btn-size">{{$user->updates()->count()}}</small>--}}
+{{--              <a href="{{request()->path() == $user->username ? 'javascript:;' : url($user->username)}}" title="{{trans('general.posts')}}"><i class="feather icon-file-text"></i> <span class="d-lg-inline-block d-none">{{trans('general.posts')}}</span></a>--}}
+{{--            </li>--}}
 
-            <li class="nav-link @if (request()->path() == $user->username.'/photos')active @endif navbar-user-mobile">
-              <small class="btn-block sm-btn-size">{{$user->updates()->where('image', '<>', '')->count()}}</small>
-              <a href="{{request()->path() == $user->username.'/photos' ? 'javascript:;' : url($user->username, 'photos')}}" title="{{trans('general.photos')}}"><i class="feather icon-image"></i> <span class="d-lg-inline-block d-none">{{trans('general.photos')}}</span></a>
-            </li>
+{{--            <li class="nav-link @if (request()->path() == $user->username.'/photos')active @endif navbar-user-mobile">--}}
+{{--              <small class="btn-block sm-btn-size">{{$user->updates()->where('image', '<>', '')->count()}}</small>--}}
+{{--              <a href="{{request()->path() == $user->username.'/photos' ? 'javascript:;' : url($user->username, 'photos')}}" title="{{trans('general.photos')}}"><i class="feather icon-image"></i> <span class="d-lg-inline-block d-none">{{trans('general.photos')}}</span></a>--}}
+{{--            </li>--}}
 
-            <li class="nav-link @if (request()->path() == $user->username.'/videos')active @endif navbar-user-mobile">
-              <small class="btn-block sm-btn-size">{{$user->updates()->where('video', '<>', '')->orWhere('video_embed', '<>', '')->whereUserId($user->id)->count()}}</small>
-              <a href="{{request()->path() == $user->username.'/videos' ? 'javascript:;' : url($user->username, 'videos')}}" title="{{trans('general.video')}}"><i class="feather icon-video"></i> <span class="d-lg-inline-block d-none">{{trans('general.videos')}}</span></a>
-              </li>
+{{--            <li class="nav-link @if (request()->path() == $user->username.'/videos')active @endif navbar-user-mobile">--}}
+{{--              <small class="btn-block sm-btn-size">{{$user->updates()->where('video', '<>', '')->orWhere('video_embed', '<>', '')->whereUserId($user->id)->count()}}</small>--}}
+{{--              <a href="{{request()->path() == $user->username.'/videos' ? 'javascript:;' : url($user->username, 'videos')}}" title="{{trans('general.video')}}"><i class="feather icon-video"></i> <span class="d-lg-inline-block d-none">{{trans('general.videos')}}</span></a>--}}
+{{--              </li>--}}
 
-            <li class="nav-link @if (request()->path() == $user->username.'/audio')active @endif navbar-user-mobile">
-              <small class="btn-block sm-btn-size">{{$user->updates()->where('music', '<>', '')->count()}}</small>
-              <a href="{{request()->path() == $user->username.'/audio' ? 'javascript:;' : url($user->username, 'audio')}}" title="{{trans('general.audio')}}"><i class="feather icon-mic"></i> <span class="d-lg-inline-block d-none">{{trans('general.audio')}}</span></a>
-            </li>
+{{--            <li class="nav-link @if (request()->path() == $user->username.'/audio')active @endif navbar-user-mobile">--}}
+{{--              <small class="btn-block sm-btn-size">{{$user->updates()->where('music', '<>', '')->count()}}</small>--}}
+{{--              <a href="{{request()->path() == $user->username.'/audio' ? 'javascript:;' : url($user->username, 'audio')}}" title="{{trans('general.audio')}}"><i class="feather icon-mic"></i> <span class="d-lg-inline-block d-none">{{trans('general.audio')}}</span></a>--}}
+{{--            </li>--}}
 
-            <li class="nav-link @if (request()->path() == $user->username.'/files')active @endif navbar-user-mobile">
-              <small class="btn-block sm-btn-size">{{$user->updates()->where('file', '<>', '')->count()}}</small>
-              <a href="{{request()->path() == $user->username.'/files' ? 'javascript:;' : url($user->username, 'files')}}" title="{{trans('general.files')}}"><i class="far fa-file-archive"></i> <span class="d-lg-inline-block d-none">{{trans('general.files')}}</span></a>
-            </li>
-        </ul>
-      @endif
+{{--            <li class="nav-link @if (request()->path() == $user->username.'/files')active @endif navbar-user-mobile">--}}
+{{--              <small class="btn-block sm-btn-size">{{$user->updates()->where('file', '<>', '')->count()}}</small>--}}
+{{--              <a href="{{request()->path() == $user->username.'/files' ? 'javascript:;' : url($user->username, 'files')}}" title="{{trans('general.files')}}"><i class="far fa-file-archive"></i> <span class="d-lg-inline-block d-none">{{trans('general.files')}}</span></a>--}}
+{{--            </li>--}}
+{{--        </ul>--}}
+{{--      @endif--}}
 
       </div><!-- col-lg-12 -->
     </div><!-- row -->
@@ -447,13 +447,13 @@
 
       <div class="col-lg-8 wrap-post">
 
-        @if (auth()->check() && auth()->user()->id == $user->id && auth()->user()->price == 0.00 && auth()->user()->free_subscription == 'no')
-        <div class="alert alert-danger mb-3">
-                 <ul class="list-unstyled m-0">
-                   <li><i class="fa fa-exclamation-triangle"></i> {{trans('general.alert_not_subscription')}} <a href="{{url('settings/subscription')}}" class="text-white link-border">{{trans('general.activate')}}</a></li>
-                 </ul>
-               </div>
-               @endif
+{{--        @if (auth()->check() && auth()->user()->id == $user->id && auth()->user()->price == 0.00 && auth()->user()->free_subscription == 'no')--}}
+{{--        <div class="alert alert-danger mb-3">--}}
+{{--                 <ul class="list-unstyled m-0">--}}
+{{--                   <li><i class="fa fa-exclamation-triangle"></i> {{trans('general.alert_not_subscription')}} <a href="{{url('settings/subscription')}}" class="text-white link-border">{{trans('general.activate')}}</a></li>--}}
+{{--                 </ul>--}}
+{{--               </div>--}}
+{{--               @endif--}}
 
         @if (auth()->check() && auth()->user()->id == $user->id && request()->path() == $user->username && auth()->user()->verified_id != 'reject')
             @if(auth()->user()->role == 'admin' || auth()->user()->role == 'normal')
