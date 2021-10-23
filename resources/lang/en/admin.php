@@ -11,7 +11,10 @@ return array(
 
 	'admin'                     =>      'Panel Admin',
 	'group'                     =>      'Create Group',
-	'role_admin'                =>      'Admin',
+	'allGroup'                     =>   'All Group',
+    'deleteGroup' => 'Delete Group',
+
+    'role_admin'                =>      'Admin',
 	'dashboard'                 =>      'Dashboard',
 	'home'                      =>      'Home',
 	'categories'                =>      'Categories',

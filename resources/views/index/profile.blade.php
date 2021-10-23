@@ -117,7 +117,7 @@
                     <a  data-toggle="modal" data-target="#exampleModalLong" class="btn delete btn-primary btn-profile mr-1" >
                         <i class="fas fa-trash mr-2"></i>
                         {{--                  {{ auth()->user()->verified_id == 'yes' ? trans('general.edit_my_page') : trans('users.edit_profile')}}--}}
-                        Delete Group
+                        {{trans('admin.deleteGroup')}}
                     </a>
             @endif
 

@@ -85,7 +85,7 @@
 
                   <div class="col-md-6">
                       <select class="form-control selectmedia" style="width: 69%!important;margin-left: -127px;"  name="group_id" id="group_id">
-                          <option disabled selected>Select Group</option>
+                          <option value="">Select Group</option>
                           @foreach(auth()->user()->myGroups as $grp)
                               <option value="{{ $grp->id }}">{{ ucwords($grp->name) }}</option>
                           @endforeach

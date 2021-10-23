@@ -84,15 +84,12 @@ class GroupController extends Controller
 
     public function groupProfile($id)
     {
-//        dd($id);
         //        group
         $group = Group::where('id',$id)->with("members","owner")->first();
-//        dd($group);
         $slug = $group->owner->username;
         $grp_members = $group->members->pluck("id")->toArray();
-        if (!in_array(auth()->user()->id,$grp_members))
+        if (!in_array(auth()->user()->id,$grp_members) && auth()->user()->id != $group->owner->id)
             abort(404);
-//        dd($slug);
         $media = null;
         $media = request('media');
         $mediaTitle = null;

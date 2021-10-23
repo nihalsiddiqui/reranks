@@ -270,7 +270,10 @@ class UpdatesController extends Controller
       $sql->file_name     = $originalNameZip ?? '';
       $sql->video_embed   = $videoUrl ? $urlVideo : '';
       $sql->price         = $this->request->price;
-      $sql->group_id         = $this->request->group_id ?? null;
+      if (isset($this->request->group_id) and !empty($this->request->group_id))
+          $sql->group_id         = $this->request->group_id ?? null;
+      else
+          $sql->group_id         = null;
       $sql->save();
 
       if ($sql->image != '') {
@@ -426,7 +429,7 @@ class UpdatesController extends Controller
 
       return response()->json([
               'success' => true,
-              'data' => $data,
+              'data' => (!empty($this->request->group_id))?"":$data,
               'total' => Auth::user()->updates()->count(),
             ]);
 

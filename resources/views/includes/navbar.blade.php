@@ -263,7 +263,10 @@
 								<div class="dropdown-divider"></div>
 						@endif
                             @if(auth()->user()->role == 'admin' || auth()->user()->role == 'agent')
-                                <a class="dropdown-item dropdown-navbar" href="{{url('#')}}">{{trans('admin.group')}}</a>
+                                <a class="dropdown-item dropdown-navbar" href="{{route('group.create')}}">{{trans('admin.group')}}</a>
+                            @endif
+                            @if(auth()->user()->role == 'admin' || auth()->user()->role == 'agent')
+                                <a class="dropdown-item dropdown-navbar" href="{{route('group.user')}}">{{trans('admin.allGroup')}}</a>
                             @endif
 
 

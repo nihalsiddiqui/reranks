@@ -11,6 +11,9 @@ return array(
 
 	'admin'                     =>      'Panel Admin',
     'group'                     =>      'Create Group',
+    'allGroup'                     =>      'All Group',
+    'deleteGroup' => 'Delete Group',
+
     'role_admin'                =>      'Admin',
 	'dashboard'                 =>      'Dashboard',
 	'home'                      =>      'Home',
