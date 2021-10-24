@@ -169,6 +169,15 @@
               </ul>
             </li><!-- ./Links -->
 
+              <li class="treeview @if( Request::is('panel/admin/create/type') || Request::is('panel/admin/settings/limits') ) active @endif">
+            	<a href="{{ url('panel/admin/settings') }}"><i class="fa fa-building"></i> <span>{{ trans('admin.Societies_data') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+
+           		<ul class="treeview-menu">
+                <li @if(Request::is('panel/admin/create/type')) class="active" @endif><a href="{{ url('panel/admin/create/type') }}"><i class="fas fa fa-angle-right"></i>Create Type</a></li>
+                <li @if(Request::is('panel/admin/settings/limits')) class="active" @endif><a href="{{ url('panel/admin/settings/limits') }}"><i class="fas fa fa-angle-right"></i> {{ trans('admin.limits') }}</a></li>
+              </ul>
+            </li><!-- ./Links -->
+
             <!-- Links -->
             <li @if(Request::is('panel/admin/maintenance/mode')) class="active" @endif>
             	<a href="{{ url('panel/admin/maintenance/mode') }}"><i class="fa fa-paint-roller"></i> <span>{{ trans('admin.maintenance_mode') }}</span></a>

@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Types;
+use FontLib\Table\Type\name;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Symfony\Component\Console\Input\Input;
+use Session;
 
 class TypesController extends Controller
 {
@@ -13,7 +18,8 @@ class TypesController extends Controller
      */
     public function index()
     {
-        //
+        $data = Types::orderBy('id','desc')->paginate(20);
+        return view('admin.all-types')->withData($data);
     }
 
     /**
@@ -23,7 +29,7 @@ class TypesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-types');
     }
 
     /**
@@ -34,7 +40,25 @@ class TypesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'type' => 'required'
+        ];
+        $this->validate($request, $rules);
+
+        if (Types::where('type', $request->type)->exists()) {
+            // exists
+            Session::flash('message', "$request->type Already Exists");
+            return Redirect::back();
+        }
+        else{
+            $type = new Types;
+            $type->type = $request->type;
+            $type->description = $request->description;
+            $type->save();
+            return redirect(url('panel/admin/all/types'));
+
+        }
+
     }
 
     /**
@@ -45,7 +69,7 @@ class TypesController extends Controller
      */
     public function show($id)
     {
-        //
+        dd('f');
     }
 
     /**
@@ -56,7 +80,9 @@ class TypesController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd('dd');
+        $data = Types::where('id',$id)->first();
+        dd($data);
     }
 
     /**
@@ -79,6 +105,8 @@ class TypesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete = Types::where('id',$id)->first();
+        $delete->delete();
+        return redirect(url('panel/admin/all/types'));
     }
 }

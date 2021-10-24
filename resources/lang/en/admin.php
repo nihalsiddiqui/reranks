@@ -24,6 +24,7 @@ return array(
 	'success_update'            =>      'Changes saved successfully',
 	'more_info'                 =>      'More info',
 	'general_settings'          =>      'General Settings',
+	'Societies_data'          =>        'Societies Data',
 	'pages'                     =>      'Pages',
 	'no_pages'                  =>      'You haven\'t created any page',
 	'add_page'                  =>      'Add a Page',

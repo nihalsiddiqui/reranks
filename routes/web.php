@@ -338,6 +338,13 @@ Route::group(['middleware' => 'private.content'], function() {
  	Route::get('panel/admin/settings','AdminController@settings');
  	Route::post('panel/admin/settings','AdminController@saveSettings');
 
+     //Types
+     Route::get('panel/admin/create/type','TypesController@create');
+     Route::get('panel/admin/all/types','TypesController@index');
+     Route::get('panel/admin/edit/type/{id}','TypesController@edit');
+     Route::post('panel/admin/delete/type/{id}','TypesController@destroy');
+     Route::post('panel/admin/store/type','TypesController@store');
+
 	// BILLING
 	Route::view('panel/admin/billing','admin.billing');
 	Route::post('panel/admin/billing','AdminController@billingStore');

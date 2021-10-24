@@ -62,6 +62,7 @@ return array(
 	'tags'					    =>		'Tags',
 	'description'			    =>		'Description',
 	'title'					    =>		'Title',
+	'types'					    =>		'Society Type',
 	'optional'					=>		'Optional',
 	'username_no_edit'          =>      'It can not be edited',
 	'full_name_misc'            =>      'Full name',

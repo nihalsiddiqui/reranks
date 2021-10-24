@@ -23,6 +23,7 @@ return array(
     'success_update' => 'Los cambios se guardaron exitosamente',
     'more_info' => 'Más información',
     'general_settings' => 'Configuración general',
+    'Societies_data'          =>        'Societies Data',
     'pages' => 'Páginas',
     'no_pages' => 'No has creado ninguna página.',
     'add_page' => 'Agregar una página',

@@ -234,10 +234,8 @@ class GroupController extends Controller
      */
     public function edit($id)
     {
-//        dd($id);
         $members = User::all();
         $editGroup = Group::where('id',$id)->first();
-//        dd($editGroup);
         return view('index.editGroup',compact('editGroup','members'));
     }
 
