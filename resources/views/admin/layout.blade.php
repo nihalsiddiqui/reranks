@@ -174,6 +174,9 @@
            		<ul class="treeview-menu">
                     <li @if(Request::is('panel/admin/all/types')) class="active" @endif><a href="{{ url('panel/admin/all/types') }}"><i class="fas fa fa-angle-right"></i>All Type</a></li>
                 </ul>
+                  <ul class="treeview-menu">
+                      <li @if(Request::is('panel/admin/all/societies')) class="active" @endif><a href="{{ url('panel/admin/all/societies') }}"><i class="fas fa fa-angle-right"></i>Socities</a></li>
+                  </ul>
             </li><!-- ./Links -->
 
             <!-- Links -->
