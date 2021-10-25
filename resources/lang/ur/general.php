@@ -119,7 +119,6 @@ return array(
 	'success_update'            =>      'It has been updated successfully',
 	'updated'                   =>      'Updated',
 	'created'                   =>      'Created',
-	'type'                      =>      'Type',
 	'public'                    =>      'Public',
 	'private'                   =>      'Private',
 	'preview'                   =>      'Preview',

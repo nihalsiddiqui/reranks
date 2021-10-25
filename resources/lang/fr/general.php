@@ -63,6 +63,8 @@ return array(
 	'description' => 'Descripción',
 	'title' => 'Título',
     'types'					    =>		'Society Type',
+    'name'					    =>		'Name',
+    'facility'					    =>		'Facility',
     'opcional' => 'Opcional',
 	'username_no_edit' => 'No se puede editar',
 	'full_name_misc' => 'Nombre completo',

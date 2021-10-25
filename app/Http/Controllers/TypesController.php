@@ -97,7 +97,6 @@ class TypesController extends Controller
             'type' => 'required|unique:types,type,'.$request->id,
         ];
         $this->validate($request,$validation);
-
         $type = Types::findOrFail($id);
         $type->type = $request->type;
         $type->description = $request->description;

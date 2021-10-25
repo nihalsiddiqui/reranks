@@ -169,10 +169,11 @@
               </ul>
             </li><!-- ./Links -->
 
-              <li class="treeview @if( Request::is('panel/admin/create/type') || Request::is('panel/admin/settings/limits') ) active @endif">
+              <li class="treeview @if( Request::is('panel/admin/all/types') || Request::is('panel/admin/all/facilities') ) active @endif">
             	<a href="{{ url('panel/admin/settings') }}"><i class="fa fa-building"></i> <span>{{ trans('admin.Societies_data') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
            		<ul class="treeview-menu">
                     <li @if(Request::is('panel/admin/all/types')) class="active" @endif><a href="{{ url('panel/admin/all/types') }}"><i class="fas fa fa-angle-right"></i>All Type</a></li>
+                    <li @if(Request::is('panel/admin/all/facilities')) class="active" @endif><a href="{{ url('panel/admin/all/facilities') }}"><i class="fas fa fa-angle-right"></i>All Facilitties</a></li>
                 </ul>
                   <ul class="treeview-menu">
                       <li @if(Request::is('panel/admin/all/societies')) class="active" @endif><a href="{{ url('panel/admin/all/societies') }}"><i class="fas fa fa-angle-right"></i>Socities</a></li>
