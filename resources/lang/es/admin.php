@@ -47,6 +47,8 @@ return array(
     'new_registrations' => 'Nuevos Registros',
     'email_verification' => 'Email Verificación',
     'description' => 'Descripción',
+    'types'					    =>		'Society Type',
+    'name'					    =>		'Name',
     'description_length' => 'Longitud de Descripción',
     'file_size_allowed' => 'Tamaño de archivo permitido',
     'invitations_by_email' => 'Invitaciones por email',

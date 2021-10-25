@@ -5,10 +5,10 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
-{{--            --}}
+            {{--            --}}
             <h4>
-                {{ trans('admin.admin') }} <i class="fa fa-angle-right margin-separator"></i> {{ trans('general.type') }} ({{$data->total()}})
-                    <a href="{{ url('panel/admin/create/type') }}" class="btn btn-sm btn-success no-shadow">
+                {{ trans('admin.admin') }} <i class="fa fa-angle-right margin-separator"></i> {{ trans('general.facility') }} ({{$data->total()}})
+                <a href="{{ url('panel/admin/create/facility') }}" class="btn btn-sm btn-success no-shadow">
                     <i class="glyphicon glyphicon-plus myicon-right"></i> {{ trans('general.add_new') }}
                 </a>
             </h4>
@@ -31,7 +31,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title"> {{ trans('general.type') }}</h3>
+                            <h3 class="box-title"> {{ trans('general.facility') }}</h3>
                         </div><!-- /.box-header -->
 
 
@@ -43,8 +43,9 @@
                                 @if ($data->count() !=  0)
                                     <tr>
                                         <th class="active">ID</th>
-                                        <th class="active">{{ trans('general.type') }}</th>
+                                        <th class="active">{{ trans('general.name') }}</th>
                                         <th class="active">{{ trans('admin.description') }}</th>
+                                        <th class="active">{{ trans('admin.type') }}</th>
                                         <th class="active">{{ trans('admin.date') }}</th>
                                         <th class="active">{{ trans('admin.actions') }}</th>
                                     </tr>
@@ -53,23 +54,24 @@
 
                                         <tr>
                                             <td>{{ $update->id }}</td>
-                                            <td>{{ $update->type }}</td>
+                                            <td>{{ $update->name }}</td>
                                             <td>{{ str_limit($update->description, 50, '...') }}</td>
+                                            <td>{{ $update->type_id}}</td>
+
                                             <td>{{ Helper::formatDate($update->date) }}</td>
                                             <td>
-                                                <a href="{{ route('panel.edit.type',$update->id)}}" target="_blank" class="btn btn-success btn-sm padding-btn">
+                                                <a href="{{ route('panel.edit.facility',$update->id)}}" target="_blank" class="btn btn-success btn-sm padding-btn">
                                                     {{ trans('admin.edit') }} <i class="fa fa-external-link-square-alt"></i>
                                                 </a>
 
                                                 {!! Form::open([
                                                   'method' => 'POST',
-                                                  'url' => "panel/admin/delete/type/$update->id",
+                                                  'url' => "/panel/admin/delete/facility/$update->id",
                                                   'class' => 'displayInline'
                                                 ]) !!}
 
-                                                    {!! Form::button(trans('admin.delete'), ['class' => 'btn btn-danger btn-sm padding-btn actionDelete']) !!}
+                                                {!! Form::button(trans('admin.delete'), ['class' => 'btn btn-danger btn-sm padding-btn actionDelete']) !!}
                                                 {!! Form::close() !!}
-
 
 
                                             </td>

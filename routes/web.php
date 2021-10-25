@@ -346,7 +346,15 @@ Route::group(['middleware' => 'private.content'], function() {
      Route::post('panel/admin/delete/type/{id}','TypesController@destroy');
      Route::post('panel/admin/store/type','TypesController@store');
 
-	// BILLING
+     //Facility
+     Route::get('panel/admin/create/facility','FacilitiesController@create');
+     Route::get('panel/admin/all/facilities','FacilitiesController@index');
+     Route::get('panel/admin/edit/facility/{id}','FacilitiesController@edit')->name('panel.edit.facility');
+     Route::post('panel/admin/store/facility','FacilitiesController@store');
+     Route::post('panel/admin/update/facility/{id}','FacilitiesController@update');
+     Route::post('/panel/admin/delete/facility/{id}','FacilitiesController@destroy');
+
+     // BILLING
 	Route::view('panel/admin/billing','admin.billing');
 	Route::post('panel/admin/billing','AdminController@billingStore');
 
