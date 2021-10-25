@@ -346,6 +346,16 @@ Route::group(['middleware' => 'private.content'], function() {
      Route::post('panel/admin/delete/type/{id}','TypesController@destroy');
      Route::post('panel/admin/store/type','TypesController@store');
 
+     //socities
+     Route::get('panel/admin/create/society','SocietyController@create');
+     Route::get('panel/admin/all/societies','SocietyController@index');
+     Route::get('panel/admin/edit/socitety/{id}','SocietyController@edit')->name('panel.edit.society');
+     Route::post('panel/admin/update/society/{id}','SocietyController@update');
+     Route::post('panel/admin/delete/society/{id}','SocietyController@destroy');
+     Route::post('panel/admin/store/society','SocietyController@store');
+
+	// BILLING
+
      //Facility
      Route::get('panel/admin/create/facility','FacilitiesController@create');
      Route::get('panel/admin/all/facilities','FacilitiesController@index');

@@ -1,4 +1,4 @@
-@extends('admin.layout')
+    @extends('admin.layout')
 
 @section('css')
 <link href="{{ asset('public/plugins/iCheck/all.css') }}" rel="stylesheet" type="text/css" />
