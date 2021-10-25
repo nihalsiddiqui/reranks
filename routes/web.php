@@ -341,7 +341,8 @@ Route::group(['middleware' => 'private.content'], function() {
      //Types
      Route::get('panel/admin/create/type','TypesController@create');
      Route::get('panel/admin/all/types','TypesController@index');
-     Route::get('panel/admin/edit/type/{id}','TypesController@edit');
+     Route::get('panel/admin/edit/type/{id}','TypesController@edit')->name('panel.edit.type');
+     Route::post('panel/admin/update/type/{id}','TypesController@update');
      Route::post('panel/admin/delete/type/{id}','TypesController@destroy');
      Route::post('panel/admin/store/type','TypesController@store');
 

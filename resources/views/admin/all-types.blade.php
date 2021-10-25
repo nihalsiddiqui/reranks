@@ -5,9 +5,14 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+{{--            --}}
             <h4>
                 {{ trans('admin.admin') }} <i class="fa fa-angle-right margin-separator"></i> {{ trans('general.type') }} ({{$data->total()}})
+                    <a href="{{ url('panel/admin/create/type') }}" class="btn btn-sm btn-success no-shadow">
+                    <i class="glyphicon glyphicon-plus myicon-right"></i> {{ trans('general.add_new') }}
+                </a>
             </h4>
+
         </section>
 
         <!-- Main content -->
@@ -52,7 +57,7 @@
                                             <td>{{ str_limit($update->description, 50, '...') }}</td>
                                             <td>{{ Helper::formatDate($update->date) }}</td>
                                             <td>
-                                                <a href="{{ url('panel/admin/edit/type/',$update->id)}}" target="_blank" class="btn btn-success btn-sm padding-btn">
+                                                <a href="{{ route('panel.edit.type',$update->id)}}" target="_blank" class="btn btn-success btn-sm padding-btn">
                                                     {{ trans('admin.edit') }} <i class="fa fa-external-link-square-alt"></i>
                                                 </a>
 

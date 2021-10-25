@@ -41,7 +41,7 @@ class TypesController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'type' => 'required'
+            'type' => 'required|unique:types'
         ];
         $this->validate($request, $rules);
 
@@ -80,9 +80,8 @@ class TypesController extends Controller
      */
     public function edit($id)
     {
-        dd('dd');
         $data = Types::where('id',$id)->first();
-        dd($data);
+        return view('admin.edit-type',compact('data'));
     }
 
     /**
@@ -94,7 +93,17 @@ class TypesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validation = [
+            'type' => 'required|unique:types,type,'.$request->id,
+        ];
+        $this->validate($request,$validation);
+
+        $type = Types::findOrFail($id);
+        $type->type = $request->type;
+        $type->description = $request->description;
+        $type->save();
+        return redirect(url('panel/admin/all/types'));
+
     }
 
     /**

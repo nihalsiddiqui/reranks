@@ -27,7 +27,7 @@
 
                     <div class="box p-top-20">
                         <!-- form start -->
-                        <form class="form-horizontal" method="post" action="{{ url('panel/admin/store/type') }}"
+                        <form class="form-horizontal" method="post" action="{{ url('panel/admin/update/type',$data->id) }}"
                               enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -42,7 +42,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">{{ trans('general.types') }}</label>
                                     <div class="col-sm-10">
-                                        <input type="text" value="{{ old('type') }}" required name="type"
+                                        <input type="text" value="{{$data->type }}" required name="type"
                                                class="form-control" placeholder="Type">
                                     </div>
                                 </div>
@@ -56,7 +56,7 @@
                                     <div class="col-sm-10">
 
                                         <textarea name="description" rows="5" cols="40" class="form-control"
-                                                  placeholder="{{ _('Description') }}">{{ old('description') }}</textarea>
+                                                  placeholder="{{ _('Description') }}">{{$data->description}}</textarea>
                                     </div>
                                 </div>
                             </div><!-- /.box-body -->

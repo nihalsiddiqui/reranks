@@ -248,7 +248,6 @@ class GroupController extends Controller
      */
     public function update(Request $request,$id)
     {
-//        dd($request-?all());
         $this->validate($request,[
             'name' => 'Required',
             'members' => 'Required',
