@@ -326,7 +326,7 @@ Route::group(['middleware' => 'private.content'], function() {
   | Admin Panel
   |--------- -------------------------
   */
- Route::group(['middleware' => 'role'], function() {
+ Route::group(['middleware' => ['auth']], function() {
 
      // Upgrades
  	Route::get('update/{version}','UpgradeController@update');
@@ -402,7 +402,16 @@ Route::group(['middleware' => 'private.content'], function() {
  		 ]]
  	);
 
-	// Verification Requests
+     //Role
+     Route::get('panel/admin/create/role','RoleController@create');
+     Route::post('panel/admin/store/role','RoleController@store');
+     Route::get('panel/admin/all/roles','RoleController@index');
+     Route::get('panel/admin/edit/role/{id}','RoleController@edit')->name('role.edit');
+     Route::post('panel/admin/update/role/{id}','RoleController@update')->name('role.update');
+     Route::delete('panel/admin/delete/role/{id}','RoleController@destroy')->name('role.destroy');
+
+
+     // Verification Requests
  	Route::get('panel/admin/verification/members','AdminController@memberVerification');
  	Route::post('panel/admin/verification/members/{action}/{id}/{user}','AdminController@memberVerificationSend');
 

@@ -176,7 +176,9 @@
 
 									 <li class="item">
 										 <div class="product-img">
-											 <img src="{{ Helper::getFile(config('path.avatar').$subscription->user()->avatar) }}" class="img-circle h-auto" onerror="onerror" />
+                                             <img src="{{ Helper::getFile(config('path.avatar').$subscription->avatar) }}" class="img-circle h-auto" onerror="onerror" />
+
+{{--                                             <img src="{{ Helper::getFile(config('path.avatar').$subscription->user()->avatar) }}" class="img-circle h-auto" onerror="onerror" />--}}
 										 </div>
 										 <div class="product-info">
 											 <span class="product-title">
