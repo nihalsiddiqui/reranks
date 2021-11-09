@@ -60,7 +60,7 @@ class LangController extends Controller
 	 /**
    * Store a newly created resource in storage.
    *
-   * @return Response
+   * @return Responsecreate
    */
 	 public function store(Request $request)
 	 {

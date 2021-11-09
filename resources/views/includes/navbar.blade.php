@@ -70,8 +70,7 @@
 			@else
 
 				<!-- ============ Menu Mobile -->
-
-				@if (auth()->user()->role == 'admin')
+				@if (\auth()->user()->hasRole('Admin'))
 					<li class="nav-item dropdown d-lg-none mt-2">
                             <a href="{{url('panel/admin')}}" class="nav-link px-2 link-menu-mobile py-1">
 							<div>
@@ -210,7 +209,7 @@
 							<span class="d-lg-none align-middle ml-1">{{trans('admin.home')}}</span>
 						</a>
 					</li>
-                    @if(auth()->user()->role == 'admin' || auth()->user()->role == 'agent')
+                    @if(auth()->user()->hasRole('Admin') || auth()->user()->role == 'agent')
 
                     <li class="nav-item dropdown d-lg-block d-none">
 						<a class="nav-link px-2"  href="{{route('group.create')}}" title="{{trans('admin.group')}}">
@@ -258,14 +257,14 @@
 						<i class="feather icon-chevron-down m-0 align-middle"></i>
 					</a>
 					<div class="dropdown-menu mb-1 dropdown-menu-right dd-menu-user" aria-labelledby="nav-inner-success_dropdown_1">
-						@if(auth()->user()->role == 'admin')
+						@if(auth()->user()->hasRole('Admin'))
 								<a class="dropdown-item dropdown-navbar" href="{{url('panel/admin')}}">{{trans('admin.admin')}}</a>
 								<div class="dropdown-divider"></div>
 						@endif
-                            @if(auth()->user()->role == 'admin' || auth()->user()->role == 'agent')
+                            @if(auth()->user()->hasRole('Admin') || auth()->user()->role == 'agent')
                                 <a class="dropdown-item dropdown-navbar" href="{{route('group.create')}}">{{trans('admin.group')}}</a>
                             @endif
-                            @if(auth()->user()->role == 'admin' || auth()->user()->role == 'agent')
+                            @if(auth()->user()->hasRole('Admin') || auth()->user()->role == 'agent')
                                 <a class="dropdown-item dropdown-navbar" href="{{route('group.user')}}">{{trans('admin.allGroup')}}</a>
                             @endif
 

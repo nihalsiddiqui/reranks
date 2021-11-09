@@ -11,10 +11,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Models\Notifications;
 use Carbon\Carbon;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use Notifiable, Billable;
+    use Notifiable, Billable,HasRoles;
 
     public $timestamps = false;
 
