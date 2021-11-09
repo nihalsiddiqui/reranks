@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Societies;
 use Illuminate\Http\Request;
 
 class SocietyController extends Controller
@@ -13,7 +14,8 @@ class SocietyController extends Controller
      */
     public function index()
     {
-        //
+        $socities = Societies::orderBy('id','desc')->paginate(20);
+        return view('admin.all_socities',compact('socities'));
     }
 
     /**
@@ -23,7 +25,7 @@ class SocietyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create-society');
     }
 
     /**
