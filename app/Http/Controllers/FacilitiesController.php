@@ -10,6 +10,15 @@ use Session;
 
 class FacilitiesController extends Controller
 {
+    public function __contruct()
+    {
+        $this->middleware('auth:web');
+        $this->middleware('facilities-list',['only'=> ['index','show']]);
+        $this->middleware('facilities-create',['only'=> ['create','store']]);
+        $this->middleware('facilities-edit',['only'=> ['edit','update']]);
+        $this->middleware('facilities-delete',['only'=> ['destroy']]);
+
+    }
     /**
      * Display a listing of the resource.
      *

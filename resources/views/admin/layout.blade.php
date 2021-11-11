@@ -155,89 +155,11 @@ desired effect
                 </div>
             </div>
 
-            <div class="pull-left info">
-              <p class="text-overflow">{{ Auth::user()->name }}</p>
-              <small class="btn-block text-overflow"><a href="javascript:void(0);"><i class="fa fa-circle text-success"></i> {{ trans('general.online') }}</a></small>
-            </div>
-          </div>
-
-
-          <!-- Sidebar Menu -->
-          <ul class="sidebar-menu">
-
-            <li class="header">{{ trans('admin.main_menu') }}</li>
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin')) class="active" @endif>
-            	<a href="{{ url('panel/admin') }}"><i class="iconmoon icon-Speedometter myicon-right"></i> <span>{{ trans('admin.dashboard') }}</span></a>
-            </li><!-- ./Links -->
-
-           <!-- Links -->
-            <li class="treeview @if( Request::is('panel/admin/settings') || Request::is('panel/admin/settings/limits') ) active @endif">
-            	<a href="{{ url('panel/admin/settings') }}"><i class="fa fa-cogs"></i> <span>{{ trans('admin.general_settings') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-
-           		<ul class="treeview-menu">
-                <li @if(Request::is('panel/admin/settings')) class="active" @endif><a href="{{ url('panel/admin/settings') }}"><i class="fas fa fa-angle-right"></i> {{ trans('admin.general') }}</a></li>
-                <li @if(Request::is('panel/admin/settings/limits')) class="active" @endif><a href="{{ url('panel/admin/settings/limits') }}"><i class="fas fa fa-angle-right"></i> {{ trans('admin.limits') }}</a></li>
-              </ul>
-            </li><!-- ./Links -->
-
-              <li class="treeview @if( Request::is('panel/admin/all/types') || Request::is('panel/admin/all/facilities') ) active @endif">
-            	<a href="{{ url('panel/admin/settings') }}"><i class="fa fa-building"></i> <span>{{ trans('admin.Societies_data') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
-           		<ul class="treeview-menu">
-                    <li @if(Request::is('panel/admin/all/types')) class="active" @endif><a href="{{ url('panel/admin/all/types') }}"><i class="fas fa fa-angle-right"></i>All Type</a></li>
-                    <li @if(Request::is('panel/admin/all/facilities')) class="active" @endif><a href="{{ url('panel/admin/all/facilities') }}"><i class="fas fa fa-angle-right"></i>All Facilitties</a></li>
-                </ul>
-                  <ul class="treeview-menu">
-                      <li @if(Request::is('panel/admin/all/societies')) class="active" @endif><a href="{{ url('panel/admin/all/societies') }}"><i class="fas fa fa-angle-right"></i>Socities</a></li>
-                  </ul>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/maintenance/mode')) class="active" @endif>
-            	<a href="{{ url('panel/admin/maintenance/mode') }}"><i class="fa fa-paint-roller"></i> <span>{{ trans('admin.maintenance_mode') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/billing')) class="active" @endif>
-            	<a href="{{ url('panel/admin/billing') }}"><i class="fa fa-file-invoice"></i> <span>{{ trans('general.billing_information') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/settings/email')) class="active" @endif>
-            	<a href="{{ url('panel/admin/settings/email') }}"><i class="fa fa-at"></i> <span>{{ trans('admin.email_settings') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/storage')) class="active" @endif>
-            	<a href="{{ url('panel/admin/storage') }}"><i class="fa fa-database"></i> <span>{{ trans('admin.storage') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/theme')) class="active" @endif>
-            	<a href="{{ url('panel/admin/theme') }}"><i class="fa fa-paint-brush"></i> <span>{{ trans('admin.theme') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/custom-css-js')) class="active" @endif>
-            	<a href="{{ url('panel/admin/custom-css-js') }}"><i class="fa fa-code"></i> <span>{{ trans('general.custom_css_js') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li @if(Request::is('panel/admin/posts')) class="active" @endif>
-            	<a href="{{ url('panel/admin/posts') }}"><i class="fa fa-user-edit"></i> <span>{{ trans('general.posts') }}</span></a>
-            </li><!-- ./Links -->
-
-            <!-- Links -->
-            <li class="@if( Request::is('panel/admin/subscriptions') ) active @endif">
-            	<a href="{{ url('panel/admin/subscriptions') }}"><i class="fa fa-dollar-sign"></i> <span>{{ trans('admin.subscriptions') }}</span></a>
-            </li><!-- ./Links -->
-
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu">
 
-                <li class="header">{{ trans('admin.main_menu') }}</li>
+{{--                <li class="header">{{ trans('admin.main_menu') }}</li>--}}
 
                 <!-- Links -->
                 <li @if(Request::is('panel/admin')) class="active" @endif>
@@ -246,91 +168,133 @@ desired effect
                 </li><!-- ./Links -->
 
                 <!-- Links -->
+                @canany(array('general-settings','general-limits'))
                 <li class="treeview @if( Request::is('panel/admin/settings') || Request::is('panel/admin/settings/limits') ) active @endif">
                     <a href="{{ url('panel/admin/settings') }}"><i class="fa fa-cogs"></i>
                         <span>{{ trans('admin.general_settings') }}</span> <i
                             class="fa fa-angle-left pull-right"></i></a>
 
                     <ul class="treeview-menu">
+                        @can('general-settings')
                         <li @if(Request::is('panel/admin/settings')) class="active" @endif><a
                                 href="{{ url('panel/admin/settings') }}"><i
                                     class="fas fa fa-angle-right"></i> {{ trans('admin.general') }}</a></li>
+                        @endcan
+                        @can('general-limits')
                         <li @if(Request::is('panel/admin/settings/limits')) class="active" @endif><a
                                 href="{{ url('panel/admin/settings/limits') }}"><i
                                     class="fas fa fa-angle-right"></i> {{ trans('admin.limits') }}</a></li>
+                        @endcan
                     </ul>
-                </li><!-- ./Links -->
+                </li>
+                @endcanany
+        <!-- ./Links -->
 
+            @canany(array('types-list','facilities-list'))
                 <li class="treeview @if( Request::is('panel/admin/all/types') || Request::is('panel/admin/all/facilities') ) active @endif">
                     <a href="{{ url('panel/admin/settings') }}"><i class="fa fa-building"></i>
                         <span>{{ trans('admin.Societies_data') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
+                        @can('types-list')
                         <li @if(Request::is('panel/admin/all/types')) class="active" @endif><a
                                 href="{{ url('panel/admin/all/types') }}"><i class="fas fa fa-angle-right"></i>All Type</a>
                         </li>
+                        @endcan
+                        @can('facilities-list')
                         <li @if(Request::is('panel/admin/all/facilities')) class="active" @endif><a
                                 href="{{ url('panel/admin/all/facilities') }}"><i class="fas fa fa-angle-right"></i>All
                                 Facilitties</a></li>
+                        @endcan
                     </ul>
-                </li><!-- ./Links -->
+                </li>
+            @endcanany
+        <!-- ./Links -->
 
                 <!-- Links -->
+               @can('maintenance-create')
                 <li @if(Request::is('panel/admin/maintenance/mode')) class="active" @endif>
                     <a href="{{ url('panel/admin/maintenance/mode') }}"><i class="fa fa-paint-roller"></i>
                         <span>{{ trans('admin.maintenance_mode') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
                 <!-- Links -->
 
 
                 <!-- Links -->
+                @can('billing-create')
                 <li @if(Request::is('panel/admin/billing')) class="active" @endif>
                     <a href="{{ url('panel/admin/billing') }}"><i class="fa fa-file-invoice"></i>
                         <span>{{ trans('general.billing_information') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @can('email-create')
                 <li @if(Request::is('panel/admin/settings/email')) class="active" @endif>
                     <a href="{{ url('panel/admin/settings/email') }}"><i class="fa fa-at"></i>
                         <span>{{ trans('admin.email_settings') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @can('storage-create')
                 <li @if(Request::is('panel/admin/storage')) class="active" @endif>
                     <a href="{{ url('panel/admin/storage') }}"><i class="fa fa-database"></i>
                         <span>{{ trans('admin.storage') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @can('theme-create')
                 <li @if(Request::is('panel/admin/theme')) class="active" @endif>
                     <a href="{{ url('panel/admin/theme') }}"><i class="fa fa-paint-brush"></i>
                         <span>{{ trans('admin.theme') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @can('CSS/JS-create')
                 <li @if(Request::is('panel/admin/custom-css-js')) class="active" @endif>
                     <a href="{{ url('panel/admin/custom-css-js') }}"><i class="fa fa-code"></i>
                         <span>{{ trans('general.custom_css_js') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('Posts-list')
                 <li @if(Request::is('panel/admin/posts')) class="active" @endif>
                     <a href="{{ url('panel/admin/posts') }}"><i class="fa fa-user-edit"></i>
                         <span>{{ trans('general.posts') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @can('subscriptions-list')
                 <li class="@if( Request::is('panel/admin/subscriptions') ) active @endif">
                     <a href="{{ url('panel/admin/subscriptions') }}"><i class="fa fa-dollar-sign"></i>
                         <span>{{ trans('admin.subscriptions') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('transactions-list')
                 <li class="@if( Request::is('panel/admin/transactions') ) active @endif">
                     <a href="{{ url('panel/admin/transactions') }}"><i class="fa fa-file-invoice-dollar"></i>
                         <span>{{ trans('admin.transactions') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('Deposits-list')
                 <li @if (Request::is('panel/admin/deposits')) class="active" @endif>
                     <a href="{{ url('panel/admin/deposits') }}"><i class="fa fa-money-bill-alt"></i>
                         <span>{{ trans('general.deposits') }}
@@ -338,18 +302,34 @@ desired effect
                                 class="label label-warning label-admin">{{App\Models\Deposits::where('status','pending')->count()}}</span>  @endif
                </span>
                     </a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @canany(array('members-create','members-list'))
                 <li @if(Request::is('panel/admin/members')) class="active" @endif>
                     <a href="{{ url('panel/admin/members') }}"><i class="glyphicon glyphicon-user"></i>
                         <span>{{ trans('admin.members') }}</span></a>
-                </li><!-- ./Links -->
-                {{--              @canany(array('country-create', 'country-list'))--}}
-                {{--              <li @if(Request::is('panel/admin/maintenance/mode')) class="active" @endif>--}}
-                {{--                  <a href="{{ url('panel/admin/maintenance/mode') }}"><i class="fa fa-user"></i> <span>{{ trans('admin.role') }}</span></a>--}}
-                {{--              </li><!-- ./Links -->--}}
-                {{--              @endcanany--}}
+                    <ul class="treeview-menu">
+                        @can('members-create')
+
+                            <li @if(Request::is('panel/admin/members')) class="active" @endif><a
+                                    href="{{ route('user.create') }}"><i class="fas fa fa-angle-right"></i>Add
+                                    Member</a></li>
+                        @endcan
+                        @can('members-list')
+                            <li @if(Request::is('panel/admin/members')) class="active" @endif><a
+                                    href="{{ url('panel/admin/members') }}"><i
+                                        class="fas fa fa-angle-right"></i>All Members</a></li>
+                        @endcan
+
+                    </ul>
+                </li>
+            @endcanany
+        <!-- ./Links -->
+
+
                 @canany(array('role-create', 'role-list'))
 
                     <li class="treeview @if( Request::is('panel/admin/create/role') || Request::is('panel/admin/all/roles') ) active @endif">
@@ -373,18 +353,25 @@ desired effect
             @endcanany
 
             <!-- Links -->
+            @can('languages-list')
                 <li @if(Request::is('panel/admin/languages')) class="active" @endif>
                     <a href="{{ url('panel/admin/languages') }}"><i class="fa fa-language"></i>
                         <span>{{ trans('admin.languages') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('categories-list')
                 <li @if(Request::is('panel/admin/categories')) class="active" @endif>
                     <a href="{{ url('panel/admin/categories') }}"><i class="fa fa-list-ul"></i>
                         <span>{{ trans('admin.categories') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+            <!-- ./Links -->
 
                 <!-- Links -->
+                @can('reports-list')
                 <li @if(Request::is('panel/admin/reports')) class="active" @endif>
                     <a href="{{ url('panel/admin/reports') }}"><i class="glyphicon glyphicon-ban-circle"></i> <span>
                 {{ trans('admin.reports') }}
@@ -392,19 +379,25 @@ desired effect
                                 class="label label-danger label-admin">{{Reports::count()}}</span> @endif
               </span>
                     </a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('withdrawals-list')
                 <li @if(Request::is('panel/admin/withdrawals')) class="active" @endif>
                     <a href="{{ url('panel/admin/withdrawals') }}"><i class="fa fa-university"></i> <span>
                 {{ trans('general.withdrawals') }} @if(Withdrawals::where('status','pending')->count() != 0) <span
                                 class="label label-warning label-admin">{{Withdrawals::where('status','pending')->count()}}</span>  @endif
               </span>
                     </a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+            <!-- ./Links -->
 
 
                 <!-- Links -->
+                @can('memberVerification-list')
                 <li @if(Request::is('panel/admin/verification/members')) class="active" @endif>
                     <a href="{{ url('panel/admin/verification/members') }}"><i
                             class="far fa-check-circle myicon-right"></i>
@@ -413,68 +406,94 @@ desired effect
                                     class="label label-warning label-admin">{{VerificationRequests::where('status','pending')->count()}}</span>  @endif
                 </span>
                     </a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('posts-list')
                 <li @if(Request::is('panel/admin/pages')) class="active" @endif>
                     <a href="{{ url('panel/admin/pages') }}"><i class="glyphicon glyphicon-file"></i>
                         <span>{{ trans('admin.pages') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('blog-list')
                 <li @if(Request::is('panel/admin/blog')) class="active" @endif>
                     <a href="{{ url('panel/admin/blog') }}"><i class="fa fa-pencil-alt"></i>
                         <span>{{ trans('general.blog') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+            @canany(array('Payment_Settings-general-edit','payment_gateways'))
                 <li class="treeview @if(Request::is('panel/admin/payments') || Request::is('panel/admin/payments/*')) active @endif">
                     <a href="{{ url('panel/admin/payments') }}"><i class="fa fa-credit-card"></i>
                         <span>{{ trans('admin.payment_settings') }}</span> <i
                             class="fa fa-angle-left pull-right"></i></a>
 
                     <ul class="treeview-menu">
+                        @can('Payment_Settings-general-edit')
                         <li @if(Request::is('panel/admin/payments')) class="active" @endif><a
                                 href="{{ url('panel/admin/payments') }}"><i
                                     class="fas fa fa-angle-right"></i> {{ trans('admin.general') }}</a></li>
-
+                        @endcan
                         <?php
                         foreach (PaymentGateways::all() as $key) {
                         ?>
-                        <li @if(Request::is('panel/admin/payments/'.$key->id)) class="active" @endif>
+                            @can('payment_gateways')
+                            <li @if(Request::is('panel/admin/payments/'.$key->id)) class="active" @endif>
                             <a href="{{ url('panel/admin/payments/'.$key->id) }}"><i
                                     class="fas fa fa-angle-right"></i> {{ $key->type == 'bank' ? trans('general.bank_transfer') : $key->name }}
                             </a>
                         </li>
+                            @endcan
                         <?php
                         }
                         ?>
                     </ul>
-                </li><!-- ./Links -->
+                </li>
+            @endcanany
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('profiles_social-edit')
                 <li @if(Request::is('panel/admin/profiles-social')) class="active" @endif>
                     <a href="{{ url('panel/admin/profiles-social') }}"><i class="fa fa-share-alt"></i>
                         <span>{{ trans('admin.profiles_social') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+            @endcan
+        <!-- ./Links -->
 
                 <!-- Links -->
+                @can('social_login-edit')
                 <li @if(Request::is('panel/admin/social-login')) class="active" @endif>
                     <a href="{{ url('panel/admin/social-login') }}"><i class="fab fa-facebook myicon-right"></i>
                         <span>{{ trans('admin.social_login') }}</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+            <!-- ./Links -->
 
                 <!-- Links -->
+                @can('Google-edit')
                 <li @if(Request::is('panel/admin/google')) class="active" @endif>
                     <a href="{{ url('panel/admin/google') }}"><i class="fab fa-google myicon-right"></i>
                         <span>Google</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+            <!-- ./Links -->
 
                 <!-- Links -->
+                @can('PWA-edit')
                 <li @if(Request::is('panel/admin/pwa')) class="active" @endif>
                     <a href="{{ url('panel/admin/pwa') }}"><i class="fa fa-mobile-alt myicon-right"></i>
                         <span>PWA</span></a>
-                </li><!-- ./Links -->
+                </li>
+                @endcan
+        <!-- ./Links -->
 
             </ul><!-- /.sidebar-menu -->
         </section>

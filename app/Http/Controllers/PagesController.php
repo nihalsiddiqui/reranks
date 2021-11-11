@@ -11,7 +11,17 @@ use Illuminate\Support\Facades\Validator;
 
 class PagesController extends Controller {
 
-	 protected function validator(array $data, $id = null)
+
+    public function __construct()
+    {
+        $this->middleware('auth:web');
+        $this->middleware('permission:posts-list',['only'=>['index','show']]);
+        $this->middleware('permission:posts-create',['only'=>['create','store']]);
+        $this->middleware('permission:posts-edit',['only'=>['edit','update']]);
+        $this->middleware('permission:posts-delete',['only'=>['destroy']]);
+    }
+
+    protected function validator(array $data, $id = null)
 	 {
 	    Validator::extend('ascii_only', function($attribute, $value, $parameters) {
 	    		return !preg_match('/[^x00-x7F\-]/i', $value);

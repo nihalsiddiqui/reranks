@@ -399,6 +399,7 @@ Route::group(['middleware' => 'private.content'], function() {
  	// Members
  	Route::resource('panel/admin/members', 'AdminController',
  		['names' => [
+             'create' => 'user.create',
  		    'edit'    => 'user.edit',
  		    'destroy' => 'user.destroy'
  		 ]]

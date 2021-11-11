@@ -120,7 +120,7 @@
                 <div class="alert alert-success mb-0 mt-3 display-none" id="checkAccount"></div>
 
                 <div class="text-center">
-                  <button type="submit" class="btn btn-primary mt-4 w-100" id="btnLoginRegister"><i></i> {{trans('auth.sign_up')}}</button>
+                  <button type="submit" class="btn btn-primary mt-4 w-100" ><i></i> {{trans('auth.sign_up')}}</button>
                 </div>
               </form>
 
