@@ -14,10 +14,10 @@ class TypesController extends Controller
     public function __Contruct()
     {
         $this->middleware('auth:web');
-        $this->middleware('premission:types-list',['only'=> ['index','show']]);
-        $this->middleware('premission:types-create',['only'=> ['create','store']]);
-        $this->middleware('premission:types-edit',['only'=> ['edit','update']]);
-        $this->middleware('premission:types-delete',['only'=> ['destroy']]);
+        $this->middleware('permission:types-list',['only'=> ['index','show']]);
+        $this->middleware('permission:types-create',['only'=> ['create','store']]);
+        $this->middleware('permission:types-edit',['only'=> ['edit','update']]);
+        $this->middleware('permission:types-delete',['only'=> ['destroy']]);
     }
     /**
      * Display a listing of the resource.

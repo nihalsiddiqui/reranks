@@ -13,10 +13,10 @@ class FacilitiesController extends Controller
     public function __contruct()
     {
         $this->middleware('auth:web');
-        $this->middleware('facilities-list',['only'=> ['index','show']]);
-        $this->middleware('facilities-create',['only'=> ['create','store']]);
-        $this->middleware('facilities-edit',['only'=> ['edit','update']]);
-        $this->middleware('facilities-delete',['only'=> ['destroy']]);
+        $this->middleware('permission:facilities-list',['only'=> ['index','show']]);
+        $this->middleware('permission:facilities-create',['only'=> ['create','store']]);
+        $this->middleware('permission:facilities-edit',['only'=> ['edit','update']]);
+        $this->middleware('permission:facilities-delete',['only'=> ['destroy']]);
 
     }
     /**
