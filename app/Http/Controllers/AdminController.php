@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\AdminSettings;
@@ -37,7 +38,50 @@ class AdminController extends Controller
 	public function __construct(AdminSettings $settings)
 	{
 		$this->settings = $settings::first();
-	}
+        $this->middleware('auth:web');
+        $this->middleware('permission:general-settings', ['only' => ['settings', 'saveSettings']]);
+        $this->middleware('permission:general-limits', ['only' => ['settingsLimits', 'saveSettingsLimits']]);
+        $this->middleware('premission:maintenance-create',['only'=>['maintenanceMode']]);
+        $this->middleware('premission:billing-create',['only'=>['billingStore']]);
+        $this->middleware('premission:email-create',['only'=>['emailSettings']]);
+        $this->middleware('premission:storage-create',['only'=>['storage']]);
+        $this->middleware('premission:theme-create',['only'=>['theme','themeStore']]);
+        $this->middleware('premission:CSS/JS-create',['only'=>['customCssJs']]);
+        $this->middleware('premission:Posts-list',['only'=>['posts']]);
+        $this->middleware('premission:Posts-delete',['only'=>['deletePost']]);
+        $this->middleware('premission:subscriptions-list',['only'=>['subscriptions']]);
+        $this->middleware('premission:transactions-list',['only'=>['transactions']]);
+        $this->middleware('premission:transactions-delete',['only'=>['cancelTransaction']]);
+        $this->middleware('premission:members-list',['only'=>['index']]);
+        $this->middleware('permission:members-create',['only'=>['create','store']]);
+        $this->middleware('permission:members-edit',['only'=>['edit','update']]);
+        $this->middleware('permission:members-delete',['only'=>['destroy']]);
+        $this->middleware('permission:categories-list',['only'=>['categories']]);
+        $this->middleware('permission:categories-create',['only'=>['addCategories','storeCategories']]);
+        $this->middleware('permission:categories-edit',['only'=>['editCategories','updateCategories']]);
+        $this->middleware('permission:categories-delete',['only'=>['deleteCategories']]);
+        $this->middleware('permission:reports-list',['only'=>['reports']]);
+        $this->middleware('permission:reports-delete',['only'=>['deleteReport']]);
+        $this->middleware('permission:withdrawals-list',['only'=>['withdrawals']]);
+        $this->middleware('permission:withdrawals-view',['only'=>['withdrawalsView','withdrawalsPaid']]);
+        $this->middleware('permission:memberVerification-list',['only'=>['memberVerification','memberVerificationSend']]);
+        $this->middleware('premission:blog-list',['only'=>['blog']]);
+        $this->middleware('permission:blog-create',['only'=>['createBlogStore']]);
+        $this->middleware('permission:blog-edit',['only'=>['editBlog','updateBlog']]);
+        $this->middleware('permission:blog-delete',['only'=>['deleteBlog']]);
+        $this->middleware('permission:profiles_social-edit',['only'=>['profiles_social','update_profiles_social']]);
+        $this->middleware('permission:social_login-edit',['only'=>['updateSocialLogin']]);
+        $this->middleware('permission:Google-edit',['only'=>['google','update_google']]);
+        $this->middleware('permission:PWA-edit',['only'=>['pwa']]);
+        $this->middleware('permission:Payment_Settings-general-edit',['only'=>['payments','savePayments']]);
+        $this->middleware('permission:payment_gateways',['only'=>['paymentsGateways','savePaymentsGateways']]);
+        $this->middleware('permission:Deposits-list',['only'=>['deposits']]);
+        $this->middleware('permission:Deposits-view',['only'=>['depositsView']]);
+        $this->middleware('permission:Deposits-approve',['only'=>['approveDeposits']]);
+        $this->middleware('permission:Deposits-delete',['only'=>['deleteDeposits']]);
+
+
+    }
 
 	/**
 	 * Show Dashboard section
@@ -103,15 +147,52 @@ class AdminController extends Controller
 		 return view('admin.members', ['data' => $data, 'query' => $query]);
 	 }
 
+    public function store(Request $request)
+    {
+        $user = new User;
+
+        if ($request->featured == 'yes' && $user->featured_date == '0000-00-00 00:00:00') {
+            $featured_date = Carbon::now();
+        } else {
+            $featured_date = $user->featured_date;
+        }
+
+        if ($request->featured == 'no' && $user->featured_date != '0000-00-00 00:00:00') {
+            $featured_date = '0000-00-00 00:00:00';
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->verified_id = $request->verified;
+        $user->status = $request->status;
+        $user->custom_fee = $request->custom_fee ?? 0;
+        $user->featured = $request->featured ?? 'no';
+//        $user->featured_date = $featured_date;
+        $user->save();
+        $user->syncRoles($request->role);
+
+        \Session::flash('success_message', trans('admin.success_update'));
+
+        return redirect('panel/admin/members');
+    }
+
+     public function create(Request $request)
+     {
+         $data = User::all();
+         $roles = Role::all();
+
+         return view('admin.add-member',compact('roles','data'));
+     }
 	public function edit($id)
 	{
 		$data = User::findOrFail($id);
+        $roles = Role::all();
 
 		if( $data->id == 1 || $data->id == Auth::user()->id ) {
 			\Session::flash('info_message', trans('admin.user_no_edit'));
 			return redirect('panel/admin/members');
 		}
-    	return view('admin.edit-member')->withData($data);
+    	return view('admin.edit-member',compact('data','roles'));
 
 	}//<--- End Method
 
@@ -119,7 +200,7 @@ class AdminController extends Controller
 	{
 //        dd($request->role);
     $user = User::findOrFail($id);
-		$input = $request->all();
+//		$input = $request->all();
 
 		 if ($request->featured == 'yes' && $user->featured_date == '0000-00-00 00:00:00') {
 			 $featured_date = Carbon::now();
@@ -133,11 +214,11 @@ class AdminController extends Controller
 
 		$user->verified_id = $request->verified;
 		$user->status = $request->status;
-	  $user->role = $request->role;
 		$user->custom_fee = $request->custom_fee ?? 0;
 		$user->featured = $request->featured ?? 'no';
 		$user->featured_date = $featured_date;
     $user->save();
+    $user->syncRoles($request->role);
 
     \Session::flash('success_message', trans('admin.success_update'));
 

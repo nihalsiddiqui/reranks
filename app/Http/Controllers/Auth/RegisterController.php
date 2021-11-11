@@ -55,7 +55,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-
+//        dd('validator');
       $settings = AdminSettings::first();
       $data['_captcha'] = $settings->captcha;
 
@@ -89,11 +89,10 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
       $settings = AdminSettings::first();
-
   		if ($settings->registration_active == '1' && $settings->home_style == 0)	{
   			return view('auth.register');
   		} else {
-  			return redirect('/');
+            return redirect('/');
   		}
     }
 
@@ -106,6 +105,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+//        dd('create');
     	$settings    = AdminSettings::first();
       $isProfile = isset($data['isProfile']) ?  '?r='.$data['isProfile'] : null;
 
@@ -176,7 +176,6 @@ class RegisterController extends Controller
      */
     public function register(Request $request)
     {
-
         $settings    = AdminSettings::first();
         $validator = $this->validator($request->all());
         $isModal = $request->input('isModal');

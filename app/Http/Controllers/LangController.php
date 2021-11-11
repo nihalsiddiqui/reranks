@@ -11,6 +11,14 @@ use Illuminate\Support\Facades\Validator;
 
 class LangController extends Controller
 {
+    public function __contruct()
+    {
+        $this->middleware('auth:web');
+        $this->middleware('permission:languages-list',['only'=>['index','show']]);
+        $this->middleware('permission:languages-create',['only'=>['create','store']]);
+        $this->middleware('permission:languages-edit',['only'=>['edit','update']]);
+        $this->middleware('permission:languages-delete',['only'=>['destroy']]);
+    }
 
 	 protected function validator(array $data, $id = null)
 	 {

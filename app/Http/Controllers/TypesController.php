@@ -11,6 +11,14 @@ use Session;
 
 class TypesController extends Controller
 {
+    public function __Contruct()
+    {
+        $this->middleware('auth:web');
+        $this->middleware('premission:types-list',['only'=> ['index','show']]);
+        $this->middleware('premission:types-create',['only'=> ['create','store']]);
+        $this->middleware('premission:types-edit',['only'=> ['edit','update']]);
+        $this->middleware('premission:types-delete',['only'=> ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +77,7 @@ class TypesController extends Controller
      */
     public function show($id)
     {
-        dd('f');
+
     }
 
     /**

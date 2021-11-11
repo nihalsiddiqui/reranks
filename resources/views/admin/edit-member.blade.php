@@ -75,11 +75,16 @@
                     <div class="form-group">
                       <label class="col-sm-2 control-label">{{ trans('admin.role') }}</label>
                       <div class="col-sm-10">
-                        <select name="role" class="form-control" >
-                      		<option @if($data->role == 'normal') selected="selected" @endif value="normal">{{trans('admin.normal')}}</option>
-                      		<option @if($data->role == 'user') selected="selected" @endif value="user">{{trans('admin.visitor')}}</option>
-                      		<option @if($data->role == 'admin') selected="selected" @endif value="admin">{{trans('admin.role_admin')}}</option>
+                        <select name="role[]" class="form-control" >
+                            <option disabled selected>Select User Role</option>
+                            @foreach($roles as $role)
+{{--                      		<option @if($data->role == 'normal') selected="selected" @endif value="normal" hidden>{{trans('admin.normal')}}</option>--}}
+{{--                      		<option @if($data->role == 'user') selected="selected" @endif value="user" hidden>{{trans('admin.visitor')}}</option>--}}
+{{--                      		<option @if($data->role == 'admin') selected="selected" @endif value="admin" hidden>{{trans('admin.role_admin')}}</option>--}}
+                                <option  value="{{$role->id}}" {{ in_array($role->id, $data->roles->pluck('id')->toArray()) ? 'selected' : '' }}>{{$role->name}}</option>
+                            @endforeach
                           </select>
+
                       </div>
                     </div>
                   </div><!-- /.box-body -->
