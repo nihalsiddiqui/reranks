@@ -40,8 +40,7 @@ class UpdatesController extends Controller
 	 */
   public function create()
   {
-//      dd('wdw');
-    // PATHS
+      // PATHS
     $path      = config('path.images');
     $pathVideo = config('path.videos');
     $pathMusic = config('path.music');
@@ -270,7 +269,7 @@ class UpdatesController extends Controller
       $sql->file_name     = $originalNameZip ?? '';
       $sql->video_embed   = $videoUrl ? $urlVideo : '';
       $sql->price         = $this->request->price;
-      if (isset($this->request->group_id) and !empty($this->request->group_id))
+      if (isset($this->request->group_id) and !empty($this->request->group_id) )
           $sql->group_id         = $this->request->group_id ?? null;
       else
           $sql->group_id         = null;
@@ -513,7 +512,7 @@ class UpdatesController extends Controller
     $path      = config('path.images');
     $pathVideo = config('path.videos');
     $pathMusic = config('path.music');
-    $pathFile = config('path.files');
+    $pathFiles = config('path.files');
 
 
     $sizeAllowed = $this->settings->file_size_allowed * 1024;
@@ -675,7 +674,7 @@ class UpdatesController extends Controller
             //======== Delete Old Video if exists
             Storage::delete($pathVideo.$video);
             //======== Delete Old File if exists
-            Storage::delete($pathFile.$zipFile);
+            Storage::delete($pathFiles.$zipFile);
 
             $video = '';
             $music = '';
@@ -706,7 +705,7 @@ class UpdatesController extends Controller
           //======== Delete Old Video if exists
           Storage::delete($pathVideo.$video);
           //======== Delete Old File if exists
-          Storage::delete($pathFile.$zipFile);
+          Storage::delete($pathFiles.$zipFile);
 
           $image = '';
           $music = '';
@@ -735,7 +734,7 @@ class UpdatesController extends Controller
           //======== Delete Old Video if exists
           Storage::delete($pathVideo.$video);
           //======== Delete Old File if exists
-          Storage::delete($pathFile.$zipFile);
+          Storage::delete($pathFiles.$zipFile);
 
           $image = '';
           $video = '';
