@@ -15,17 +15,18 @@
     <div class="progress progress-xs">
       <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
-  </div>
+</div>
 
       <form method="POST" action="{{url('update/create')}}" enctype="multipart/form-data" id="formUpdateCreate">
         @csrf
+          <input type="hidden" name="group_id" value="{{request()->segment(3)}}" />
       <div class="card mb-4 card-form-post">
         <div class="blocked display-none"></div>
         <div class="card-body pb-0">
 
           <div class="media">
           <span class="rounded-circle mr-3">
-      				<img src="{{ Helper::getFile(config('path.avatar').auth()->user()->avatar) }}" class="rounded-circle avatarUser" width="60" height="60">
+      				<img src="{{Helper::getFile(config('path.avatar').auth()->user()->avatar)}}" class="rounded-circle avatarUser" width="60" height="60">
       		</span>
 
           <div class="media-body">
@@ -83,6 +84,7 @@
                       </button>
                   </div>
 
+                  @if(request()->segment(1) != 'group' and auth()->user()->role == 'admin')
                   <div class="col-md-6">
                       <select class="form-control selectmedia" style="width: 69%!important;margin-left: -127px;"  name="group_id" id="group_id">
                           <option value="">Select Group</option>
@@ -91,7 +93,7 @@
                           @endforeach
                       </select>
                   </div>
-
+                  @endif
               </div>
             <div class="d-inline-block float-right mt-3">
               <button type="submit" disabled class="btn btn-sm btn-primary rounded-pill float-right e-none" data-empty="{{trans('general.empty_post')}}" data-error="{{trans('general.error')}}" data-msg-error="{{trans('general.error_internet_disconnected')}}" id="btnCreateUpdate">

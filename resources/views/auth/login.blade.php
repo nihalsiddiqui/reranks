@@ -7,7 +7,7 @@
     <div class="container pt-lg-md">
       <div class="row">
         <div class="col-lg-7">
-          <img src="{{url('public/img', $settings->home_index)}}" class="img-center img-fluid d-lg-block d-none">
+{{--          <img src="{{url('public/img', $settings->home_index)}}" class="img-center img-fluid d-lg-block d-none">--}}
         </div>
         <div class="col-lg-5">
           <div class="card bg-white shadow border-0">
@@ -95,7 +95,7 @@
                   </div>
 
                 <div class="text-center">
-                  <button type="submit" id="btnLoginRegister" class="btn btn-primary mt-4 w-100"><i></i> {{trans('auth.login')}}</button>
+                  <button type="submit" id="btnLoginRegister" class="btn mt-4 w-100" style="background: #D0191D;color: #fff;"><i></i> {{trans('auth.login')}}</button>
                 </div>
               </form>
 

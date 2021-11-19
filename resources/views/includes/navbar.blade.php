@@ -63,7 +63,7 @@
 
 					@if ($settings->registration_active == '1')
 					<li class="nav-item">
-						<a @if (auth()->guest() && request()->route()->named('profile')) data-toggle="modal" data-target="#loginFormModal" @endif class="nav-link btn btn-main btn-primary pr-3 pl-3" href="{{$settings->home_style == 0 ? url('signup') : url('/')}}">{{trans('general.getting_started')}} <small class="pl-1"><i class="fa fa-long-arrow-alt-right"></i></small></a>
+						<a @if (auth()->guest() && request()->route()->named('profile')) data-toggle="modal" data-target="#loginFormModal" @endif class="nav-link btn btn-main  pr-3 pl-3" style="background: #D0191D;color: #fff; " href="{{$settings->home_style == 0 ? url('signup') : url('/')}}">{{trans('general.getting_started')}} <small class="pl-1"><i class="fa fa-long-arrow-alt-right"></i></small></a>
 					</li>
 				@endif
 

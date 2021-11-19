@@ -36,7 +36,8 @@
                         <img src="{{asset($group->cover_image)}}" height="160px;">
                         <div class="card-body" style="padding: 15px;">
                                 <h5 style="font-weight: normal!important;">{{$group->name}}</h5>
-                                <p>{{$group->members->count()}} members - 140 posts a day</p>
+                                <p>{{$group->members->count()}} members </p>
+{{--                            - 140 posts a day--}}
 {{--                            <p><span><i class="fas fa-user mr-2"></i></span>32 friends are members</p>--}}
                         </div>
 {{--                            <div class="card-footer" style="border-top: none!important;justify-content: space-between;flex-flow: row;display: flex;">--}}
