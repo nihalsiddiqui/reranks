@@ -17,7 +17,7 @@
   var URL_BASE = "{{ url('/') }}";
   var _title = '@section("title")@show {{e($settings->title)}}';
   var session_status = "{{ Auth::check() ? 'on' : 'off' }}";
-  var totalPosts = @if(isset($updates)) {{ $updates->total() }}@else 0 @endif;
+{{--  var totalPosts = @if(isset($updates)) {{ $updates->total() }}@else 0 @endif;--}}
   var ReadMore = "{{trans('general.view_all')}}";
   var copiedSuccess = "{{trans('general.copied_success')}}";
   var copied = "{{trans('general.copied')}}";

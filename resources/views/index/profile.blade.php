@@ -110,6 +110,7 @@
 
             <div class="d-flex-user justify-content-center mb-2">
             @if (auth()->check() && auth()->user()->id == $user->id)
+{{--            @if (auth()->user()->id === auth()->user()->id)--}}
               <a href="{{route('edit.group',$group->id)}}" class="btn btn-primary btn-profile mr-1"><i class="fa fa-pencil-alt mr-2"></i>
 {{--                  {{ auth()->user()->verified_id == 'yes' ? trans('general.edit_my_page') : trans('users.edit_profile')}}--}}
               Edit My Group
@@ -455,7 +456,8 @@
 {{--               </div>--}}
 {{--               @endif--}}
 
-        @if (auth()->check() && auth()->user()->id == $user->id && request()->path() == $user->username && auth()->user()->verified_id != 'reject')
+{{--          @dd(request()->segment(3) == auth()->user()->id)--}}
+        @if (auth()->check() && auth()->user()->id == $user->id && auth()->user()->verified_id != 'reject')
             @if(auth()->user()->role == 'admin' || auth()->user()->role == 'normal')
                 @include('includes.form-post')
             @endif

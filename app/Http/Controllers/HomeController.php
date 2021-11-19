@@ -50,7 +50,8 @@ class HomeController extends Controller
 
         // Home Guest
         if (Auth::guest()) {
-          $users = User::where('featured','yes')
+
+            $users = User::where('featured','yes')
             ->where('status','active')
               ->whereVerifiedId('yes')
               ->whereHideProfile('no')
@@ -61,11 +62,10 @@ class HomeController extends Controller
             $usersTotal = User::whereStatus('active')->whereVerifiedId('yes')->count();
 
             $home = $this->settings->home_style == 0 ? 'home' : 'home-login';
+            $updates = Updates::limit(8)->get();
+//            dd($updates);
 
-          return view('index.'.$home, [
-              'users' => $users,
-              'usersTotal' => $usersTotal
-            ]);
+          return view('index.'.$home, compact('users' , 'usersTotal', 'updates'));
 
         } else {
 

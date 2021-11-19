@@ -46,6 +46,6 @@
 			<p class="m-0 py-3 text-muted card-text">
 				{{ Str::limit($response->story, 100, '...') }}
 			</p>
-			<a href="{{url($response->username)}}" class="btn btn-1 btn-sm btn-outline-primary">{{trans('general.go_to_page')}}</a>
+			<a href="{{url($response->username)}}" class="btn btn-1 btn-sm btn-outline-danger">{{trans('general.go_to_page')}}</a>
 	</div>
 </div><!-- End Card -->
